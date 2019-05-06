@@ -293,7 +293,7 @@ It has 4 possible outcomes:
 
 Using this we can calculate the **accuracy of the model** by taking the sum of correctly predicted cells (FALSE & 0 = Correct Male prediction) and (TRUE & 1 = correct Female prediction) and then dividing by all predictions:
 
-(4694 + 19914) / (4694 + 19914 `+ 1647 + 800) = 90.9% accuracy *Please note that the numbers may change from the example given due to the random number starting point and re-running the code - however the result should stand true*
+(4694 + 19914) / (4694 + 19914 + 1647 + 800) = 90.9% accuracy *Please note that the numbers may change from the example given due to the random number starting point and re-running the code - however the result should stand true*
 
 Overall this model is already a strong improvement to our original baseline of 79%. We can do further work to understand the performance of this model in predicting specifically female (right vs wrong) in the data or specifically male - this is done by testing the sensitivity and specificity of the model. 
 
