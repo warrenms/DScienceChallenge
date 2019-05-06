@@ -463,7 +463,7 @@ WHERE is_newsletter_subscriber = &quot;Y&quot; AND male_items &gt; 0 AND days_si
 <h2>Stage 2: CLEAN</h2>
 <p><em>Unhash the data (test_data.zip) using the secret key, extract it and most importantly clean it and put it in a form you can use. We have also “intentionally” corrupted two columns in this file - two columns that might look correct but are not correct. They need “some correction” to be useful.</em></p>
 <p>First task is to unhash and load the data (which has been provided in a json format) and create a working table called “fashion”.</p>
-<pre class="r"><code>fashion &lt;- fromJSON(&quot;data 2.json&quot;)</code></pre>
+<pre class="r"><code>fashion &lt;- fromJSON(&quot;data2.json&quot;)</code></pre>
 <p>An example of the data and some useful statistics from “fashion” can be created using the below code, as well as plotting each of the variables…</p>
 <pre class="r"><code>head(fashion)
 summary(fashion)</code></pre>
@@ -614,7 +614,7 @@ table(FashionTrain$genderprox, predictTrain &gt;0.5)</code></pre>
 <p>+<strong>False positives (FP)</strong>: We predicted Female however the customer is actually Male <strong>(800 instances)</strong></p>
 <p>+<strong>False negatives (FN)</strong>: We predicted Male however the customer is actually Female <strong>(1647 instances)</strong></p>
 <p>Using this we can calculate the <strong>accuracy of the model</strong> by taking the sum of correctly predicted cells (FALSE &amp; 0 = Correct Male prediction) and (TRUE &amp; 1 = correct Female prediction) and then dividing by all predictions:</p>
-<p>(4694 + 19914) / (4694 + 19914 `+ 1647 + 800) = 90.9% accuracy <em>Please note that the numbers may change from the example given due to the random number starting point and re-running the code - however the result should stand true</em></p>
+<p>(4694 + 19914) / (4694 + 19914 + 1647 + 800) = 90.9% accuracy <em>Please note that the numbers may change from the example given due to the random number starting point and re-running the code - however the result should stand true</em></p>
 <p>Overall this model is already a strong improvement to our original baseline of 79%. We can do further work to understand the performance of this model in predicting specifically female (right vs wrong) in the data or specifically male - this is done by testing the sensitivity and specificity of the model.</p>
 <p>Another way to improve the model is to adjust the <strong>threshold level</strong>. This impacts the level at which a prediction is considered TRUE or FALSE, i.e at what level should a prediction be classified as 0 (Male) or 1 (Female). The default is set a 0.5 indicating that below the 0.5 level the prediction should be classified as = 0 and above 0.5 level it should be classified as = 1. Exploring the ROC (Receiver Operating Characteristic) curve can help identify at what level the threshold should be set.</p>
 <pre class="r"><code>plot(ROCpref)</code></pre>
@@ -675,7 +675,7 @@ nn$result.matrix</code></pre>
 ## 1layhid2.to.2layhid1    -2.367140e+00
 ## Intercept.to.genderprox -1.361059e+01
 ## 2layhid1.to.genderprox   2.618913e+01</code></pre>
-<pre class="r"><code>plot (nn)</code></pre>
+<pre class="r"><code>plot(nn)</code></pre>
 <p>Once the data is plotted the left hand ‘nodes’ show the input data whilst the lines and arrows show the weights assigned to these inputs. The middle nodes represent the model learning the impact of these variables (and ultimately assigning a bias level) which determines the output displayed on the right hand side. The network learns by passing the data back and forth through the nodes until the model determines the right values. In some ways this is a black box approach to modelling with the ultimate test of performacne being the final choosen models ability to predict gender correctly.</p>
 <p>We can now create prediction values from the model:</p>
 <pre class="r"><code>temp_test &lt;- subset(FashionTest, select = c(&quot;items&quot;, &quot;returns&quot;, &quot;cc_payments&quot;, &quot;wapp_items&quot;, &quot;wftw_items&quot;, &quot;sacc_items&quot;, &quot;mspt_items&quot;, &quot;mftw_items&quot;, &quot;orders&quot;, &quot;mapp_items&quot;))

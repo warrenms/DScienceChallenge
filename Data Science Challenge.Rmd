@@ -42,7 +42,7 @@ The original challenge can be found here https://github.com/theiconic/datascient
 *This stage deals with running queries on a database (SQLite) provided. The ask is to unhash the SQL data and answer the following questions (note: it is OK to ignore the underlying errors in the data)*
 
 ```{r, echo= FALSE}
-db <- dbConnect(RSQLite::SQLite(), dbname = "~/Desktop/TheIconic/test_data.db")
+db <- dbConnect(RSQLite::SQLite(), dbname = "test_data.db")
 knitr::opts_chunk$set(connection = db)
 ```
 
