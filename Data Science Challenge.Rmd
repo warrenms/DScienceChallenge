@@ -2,10 +2,10 @@
 title: 'Data Science Challenge: Inferring Gender from Transaction Data'
 author: "Warren Mackay-Smith"
 date: "05/05/2019"
-output:
-  html_document: default
-  pdf_document: default
-  word_document: default
+output: 
+    html_document: default
+    pdf_document: default
+    word_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -89,7 +89,7 @@ This approach has created a list of **293 customers**, a sample of the first ten
 First task is to unhash and load the data (which has been provided in a json format) and create a working table called "fashion".
 
 ```{r }
-fashion <- fromJSON("data 2.json")
+fashion <- fromJSON("data2.json")
 ```
 
 An example of the data and some useful statistics from "fashion" can be created using the below code, as well as plotting each of the variables...
